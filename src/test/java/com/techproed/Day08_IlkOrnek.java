@@ -11,8 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Day08_IlkOrnek {
 
-    //Diger methodlardan bu nesneye ulasmak icin instance yaptik.
-    //findElement() gibi methodlari test'lerin icinde kullanacagiz
+    //Diger methodlardan(her yerden) bu nesneye ulasmak icin instance yaptik.
+    //findElement() gibi methodlari @Test'lerin icinde kullanacagiz
     static WebDriver driver;
 
     @BeforeClass
