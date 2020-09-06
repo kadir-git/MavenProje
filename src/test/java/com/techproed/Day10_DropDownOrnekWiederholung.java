@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.concurrent.TimeUnit;
 
-public class Day10_DropDownOrnek {
+public class Day10_DropDownOrnekWiederholung {
 
 // 1. Amazon.com'a gidelim.
 // 2. DropDown üzerinde Software seçelim.
@@ -33,29 +33,19 @@ public class Day10_DropDownOrnek {
     @Test
     public void amazonAramaTesti(){
         driver.get("http://amazon.com");
-        WebElement dropDown = driver.findElement(By.id("searchDropdownBox"));
+        WebElement dropDown = driver.findElement(By.xpath("//select[@class='nav-search-dropdown searchSelect']"));
         Select select = new Select(dropDown);
         select.selectByVisibleText("Software");
 
-        WebElement aramaKutusu = driver.findElement(By.id("twotabsearchtextbox"));
-        aramaKutusu.sendKeys("Java" + Keys.ENTER);
-        //aramaKutusu.submit();
+        WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
+        searchBox.sendKeys("JAVA" + Keys.ENTER);
 
         WebElement sonucSayisi = driver.findElement(By.xpath("//div[@class='a-section a-spacing-small a-spacing-top-small']"));
         System.out.println(sonucSayisi.getText());
 
-        //Sonucda Java varsa test basarili olsun
-        Assert.assertTrue(sonucSayisi.getText().contains("Java"));
-
-        //Class degeri : a-section a-spacing-small a-spacing-top-small
-        //Sonuc degerinin css.Selektor ile alinmasi
-        //css.Selector kullanildiginda arada bosluk varsa silinip nokta(.) yazilir
-        //WebElement sonucSayisiCss = driver.findElement(By.cssSelector(".a-section.a-spacing-small.a-spacing-top-small"));
-        //System.out.println(sonucSayisiCss.getText());
-
+        Assert.assertTrue(sonucSayisi.getText().contains("JAVA"));
 
 
     }
-
 
 }

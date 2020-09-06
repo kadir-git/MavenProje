@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Day10_DropDown {
+public class Day10_DropDownWiederholung {
 
     static WebDriver driver;
 
@@ -29,9 +29,6 @@ public class Day10_DropDown {
         driver.get("http://amazon.com");
         WebElement dropDown = driver.findElement(By.id("searchDropdownBox"));
 
-        // Select class'ından nesne üretmeden dropdown üzerinde işlem yapamayız.
-        // Eğer mülakatta dropdown ile ilgili bir soru gelirse, kesinlikle
-        // select class'ından bahsetmeniz gerekiyor.
         Select select = new Select(dropDown);
 
         try {
@@ -40,10 +37,7 @@ public class Day10_DropDown {
             e.printStackTrace();
         }
 
-        // Seçeneğin yazısına göre, seçim yapabiliriz.
-        select.selectByVisibleText("Baby"); //secenegin yazisina göre
-        //select.selectByValue("search-alias=baby-products-intl-ship");     //value="search-alias=baby-products-intl-ship" 'e göre
-        //select.selectByIndex(1);     //index sayiyina göre (1)
+        select.selectByVisibleText("Baby");
 
         try {
             Thread.sleep(2000);
@@ -51,7 +45,6 @@ public class Day10_DropDown {
             e.printStackTrace();
         }
 
-        //secenegin value attribute'u kullanilarak secim yapilir
         select.selectByValue("search-alias=automotive-intl-ship");
 
         try {
@@ -60,29 +53,18 @@ public class Day10_DropDown {
             e.printStackTrace();
         }
 
-        //secenegin bulundugu index sirasina göre secim yapilabilir
         select.selectByIndex(3);
-
-        //getFirstSelectedOption() dropDown üzerinde su anda secili olan
-        // WebElementi return eder
 
         WebElement secim = select.getFirstSelectedOption();
         System.out.println(secim.getText());
 
-        //getOptions() tüm secenekleri toplam sayisini size return eder
         List<WebElement> liste = select.getOptions();
-
-        for (WebElement webElement: liste) {
-            System.out.println(webElement.getText());
+        for (WebElement w: liste) {
+            System.out.println(w.getText());
         }
 
-        // liste.size() tüm seçeneklerin toplam sayısını size return eder.
-        int toplamSecenekSayisi = liste.size();
-        System.out.println("Toplam seçim sayısı : " + toplamSecenekSayisi);
+
+
     }
-
-
-
-
 
 }
